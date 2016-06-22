@@ -156,7 +156,7 @@
         var idp = $('input[name=idp]').val();
         var bln = $('select[name=bln]').val();
         var thn = $('select[name=thn]').val();
-        var url = 'http://ibacor.com/api/tagihan-pln';
+        var url = '//ibacor.com/api/tagihan-pln';
 
         $.get(url, {idp: idp, bln: bln, thn: thn}, function(resp){
           console.log(resp);
