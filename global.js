@@ -22,49 +22,49 @@ $(function () {
     var thn = $('select[name=thn]').val();
     var url = 'http://ibacor.com/api/tagihan-pln?idp='+idp+'&bln='+bln+'&thn='+thn;
 
-    $.get(url).done(function (resp) {
-        console.log(resp);
-        $('.progress').hide();
-        $('.tbl-bordered').show();
-        if (resp.status == 'success') {
-          var rp = numeral(resp.data.tagihan).format('0,0');
-              rp = rp.replace(/\,/g, '.');
+    // $.get(url).done(function (resp) {
+    //     console.log(resp);
+    //     $('.progress').hide();
+    //     $('.tbl-bordered').show();
+    //     if (resp.status == 'success') {
+    //       var rp = numeral(resp.data.tagihan).format('0,0');
+    //           rp = rp.replace(/\,/g, '.');
 
-          $('#tbl_idplg').html(resp.data.idpel);
-          $('#tbl_nama').html(resp.data.nama);
-          $('#tbl_alamat').html(resp.data.alamat);
-          $('#tbl_trf').html(resp.data.tarif+'/'+resp.data.daya);
-          $('#tbl_kwh').html(resp.data.pemkwh);
-          $('#tbl_blnthn').html(resp.data.namathblrek);
-          $('#tbl_rp').html('Rp '+rp);
-          $('#tbl_bilang').html(resp.data.terbilang);
-        } else {
-          $('.tbl-bordered').hide();
-          $('strong').show();            
-        }
-    });
+    //       $('#tbl_idplg').html(resp.data.idpel);
+    //       $('#tbl_nama').html(resp.data.nama);
+    //       $('#tbl_alamat').html(resp.data.alamat);
+    //       $('#tbl_trf').html(resp.data.tarif+'/'+resp.data.daya);
+    //       $('#tbl_kwh').html(resp.data.pemkwh);
+    //       $('#tbl_blnthn').html(resp.data.namathblrek);
+    //       $('#tbl_rp').html('Rp '+rp);
+    //       $('#tbl_bilang').html(resp.data.terbilang);
+    //     } else {
+    //       $('.tbl-bordered').hide();
+    //       $('strong').show();            
+    //     }
+    // });
 
-    // $.get(url, {idp: idp, bln: bln, thn: thn}, function(resp){
-    //   console.log(resp);
-    //   $('.progress').hide();
-    //   $('.tbl-bordered').show();
-    //   if (resp.status == 'success') {
-    //     var rp = numeral(resp.data.tagihan).format('0,0');
-    //         rp = rp.replace(/\,/g, '.');
+    $.get(url, {idp: idp, bln: bln, thn: thn}, function(resp){
+      console.log(resp);
+      $('.progress').hide();
+      $('.tbl-bordered').show();
+      if (resp.status == 'success') {
+        var rp = numeral(resp.data.tagihan).format('0,0');
+            rp = rp.replace(/\,/g, '.');
 
-    //     $('#tbl_idplg').html(resp.data.idpel);
-    //     $('#tbl_nama').html(resp.data.nama);
-    //     $('#tbl_alamat').html(resp.data.alamat);
-    //     $('#tbl_trf').html(resp.data.tarif+'/'+resp.data.daya);
-    //     $('#tbl_kwh').html(resp.data.pemkwh);
-    //     $('#tbl_blnthn').html(resp.data.namathblrek);
-    //     $('#tbl_rp').html('Rp '+rp);
-    //     $('#tbl_bilang').html(resp.data.terbilang);
-    //   } else {
-    //     $('.tbl-bordered').hide();
-    //     $('strong').show();            
-    //   }
-    // }, 'json');
+        $('#tbl_idplg').html(resp.data.idpel);
+        $('#tbl_nama').html(resp.data.nama);
+        $('#tbl_alamat').html(resp.data.alamat);
+        $('#tbl_trf').html(resp.data.tarif+'/'+resp.data.daya);
+        $('#tbl_kwh').html(resp.data.pemkwh);
+        $('#tbl_blnthn').html(resp.data.namathblrek);
+        $('#tbl_rp').html('Rp '+rp);
+        $('#tbl_bilang').html(resp.data.terbilang);
+      } else {
+        $('.tbl-bordered').hide();
+        $('strong').show();            
+      }
+    }, 'jsonp');
     e.preventDefault();
   });
 });
